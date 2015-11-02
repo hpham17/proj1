@@ -90,3 +90,9 @@ section {
   @extend .radius;
   @extend .tiny;
 }
+.pokeball {
+  background-image: url(pokeball.png);
+	background-position: center;
+	background-repeat: no;
+	position: relative;
+}

@@ -1,3 +1,22 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
+<% if @trainer == current_trainer %>
+    <%= button_to "Create a new pokemon!", pokemons_new_path, 
+                :class => "button medium", :method => :get %>
+<% end %>
+<h4>PokeDex</h4>
+<% @trainer.pokemons.each do |pokemon| %>
+                <li><%= pokemon.name %>
+                <p>Level: <%= pokemon.level %><br>
+                Health: <%= pokemon.health %></p></li>
+                <%= select("post", "current_pokemon", @pokemons.all.collect {|p| [ p.name, p.id ] }, {prompt: 'Select one of your Pokemons to fight with!'}) %>
+                <%= button_to "Damage!", damage_path(id: pokemon), 
+                :class => "button medium", :method => :patch %>
+                <%= button_to "Heal!", heal_path(id: pokemon), 
+                :class => "button medium", :method => :patch %>
+
+              
+              <% end %>
+              
+              
